@@ -1,4 +1,5 @@
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FormsModule } from '@angular/forms';
@@ -24,6 +25,7 @@ import { DateTimeFormatPipe } from './_helps/date-time-format-pipe.pipe';
   ],
   imports: [
     AppRoutingModule,
+    BrowserAnimationsModule,
     BrowserModule,
     BsDropdownModule.forRoot(),
     FormsModule,
