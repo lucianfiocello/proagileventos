@@ -567,4 +567,12 @@ FodyWeavers.xsd
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
-# End of https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,angular,aspnetcore,dotnetcore
+### Database ###
+*.accdb
+*.db
+*.dbf
+*.mdb
+*.pdb
+*.sqlite3
+
+# End of https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,angular,aspnetcore,dotnetcore,database
