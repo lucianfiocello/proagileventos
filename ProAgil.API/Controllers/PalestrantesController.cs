@@ -69,7 +69,7 @@ namespace ProAgil.Controllers
         {
             try
             {
-                var evento = await _repo.ObterTodosEventosPorIdAsync(id, false);
+                var evento = await _repo.ObterPalestrantePorIdAsync(id, false);
                 if (evento == null) return NotFound();
 
                 _repo.Update(model);

@@ -75,7 +75,7 @@ namespace ProAgil.Repository
             return await query.ToArrayAsync();
         }
 
-        public async Task<Evento> ObterTodosEventosPorIdAsync(int eventoId, bool incluirPalentrantes)
+        public async Task<Evento> ObterEventoPorIdAsync(int eventoId, bool incluirPalentrantes)
         {
             IQueryable<Evento> query = _context.Eventos
                 .Include(c => c.Lotes)

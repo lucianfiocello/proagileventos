@@ -35,7 +35,7 @@ namespace ProAgil.Controllers
         {
             try
             {
-                var results = await _repo.ObterTodosEventosPorIdAsync(id, true);
+                var results = await _repo.ObterEventoPorIdAsync(id, true);
                 return Ok(results);
             }
             catch (System.Exception)
@@ -82,7 +82,7 @@ namespace ProAgil.Controllers
         {
             try
             {
-                var evento = await _repo.ObterTodosEventosPorIdAsync(id, false);
+                var evento = await _repo.ObterEventoPorIdAsync(id, false);
                 if (evento == null) return NotFound();
 
                 _repo.Update(model);
@@ -104,7 +104,7 @@ namespace ProAgil.Controllers
         {
             try
             {
-                var evento = await _repo.ObterTodosEventosPorIdAsync(id, false);
+                var evento = await _repo.ObterEventoPorIdAsync(id, false);
                 if (evento == null) return NotFound();
 
                 _repo.Delete(evento);
