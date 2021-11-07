@@ -1,27 +1,35 @@
-import { EventoService } from './_services/evento.service';
-import { DateTimeFormatPipe } from './_helps/date-time-format-pipe.pipe';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from "@angular/common/http";
-import { FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from "@angular/common/http";
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgModule } from '@angular/core';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+
+import { EventoService } from './_services/evento.service';
+
 import { AppComponent } from './app.component';
 import { EventosComponent } from './eventos/eventos.component';
 import { NavComponent } from './nav/nav.component';
 
+import { DateTimeFormatPipe } from './_helps/date-time-format-pipe.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
+    DateTimeFormatPipe,
     EventosComponent,
-    NavComponent,
-    DateTimeFormatPipe
+    NavComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
+    BsDropdownModule.forRoot(),
+    FormsModule,
     HttpClientModule,
-    FormsModule
+    ModalModule.forRoot(),
+    TooltipModule.forRoot()
   ],
   providers: [
     EventoService
