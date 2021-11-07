@@ -66,7 +66,7 @@ namespace ProAgil.Controllers
                 _repo.Add(model);
                 if (await _repo.SaveChangesAsync())
                 {
-                    return Created($"/api/eventos/{model.Id}", model);
+                    return Created($"/api/Eventos/{model.Id}", model);
                 }
             }
             catch (System.Exception)
@@ -88,7 +88,7 @@ namespace ProAgil.Controllers
                 _repo.Update(model);
                 if (await _repo.SaveChangesAsync())
                 {
-                    return Created($"/api/eventos/{model.Id}", model);
+                    return Created($"/api/Eventos/{model.Id}", model);
                 }
             }
             catch (System.Exception)
