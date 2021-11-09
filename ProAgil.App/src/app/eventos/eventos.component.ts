@@ -1,12 +1,11 @@
 import { EventoService } from './../_services/evento.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Evento } from '../_models/evento';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
-import { templateJitUrl } from '@angular/compiler';
 defineLocale('pt-br', ptBrLocale);
 
 @Component({
@@ -22,6 +21,7 @@ export class EventosComponent implements OnInit {
   imagemMargem = 2;
   mostrarImagem = false;
   registerForm!: FormGroup;
+  modoSalvar = 'post';
 
   constructor(
     private eventoService: EventoService
@@ -39,6 +39,18 @@ export class EventosComponent implements OnInit {
     set filtroLista(value: string){
       this._filtroLista = value;
       this.eventosFiltrados = this.filtroLista ? this.filtrarEventos(this.filtroLista) : this.eventos;
+    }
+
+    editarEvento(evento: Evento, template: any){
+      this.modoSalvar = 'put';
+      this.openModal(template);
+      this.evento = evento;
+      this.registerForm.patchValue(evento);
+    }
+
+    novoEvento(template: any){
+      this.modoSalvar = 'post';
+      this.openModal(template);
     }
 
     openModal(template: any){
@@ -76,16 +88,28 @@ export class EventosComponent implements OnInit {
 
       salvarAlteracoes(template: any) {
         if(this.registerForm.valid){
-          this.evento = Object.assign({}, this.registerForm.value);
-          this.eventoService.postEvento(this.evento).subscribe(
-            (novoEvento: any) => {
-              console.log(novoEvento);
-              template.hide();
-              this.getEventos();
-            }, error => {
-              console.log(error);
-            }
-          );
+          if(this.modoSalvar === 'post') {
+            this.evento = Object.assign({}, this.registerForm.value);
+            this.eventoService.postEvento(this.evento).subscribe(
+              (novoEvento: any) => {
+                console.log(novoEvento);
+                template.hide();
+                this.getEventos();
+              }, error => {
+                console.log(error);
+              }
+            );
+          } else {
+            this.evento = Object.assign({id: this.evento.id}, this.registerForm.value);
+            this.eventoService.putEvento(this.evento).subscribe(
+              () => {
+                template.hide();
+                this.getEventos();
+              }, error => {
+                console.log(error);
+              }
+            );
+          }
         }
       }
 
