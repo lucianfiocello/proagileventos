@@ -22,6 +22,7 @@ export class EventosComponent implements OnInit {
   imagemMargem = 2;
   mostrarImagem = false;
   registerForm!: FormGroup;
+  dataEvento!: string;
   modoSalvar = 'post';
   bodyDeletarEvento = '';
 
@@ -142,9 +143,9 @@ export class EventosComponent implements OnInit {
           (_eventos: Evento[]) => {
             this.eventos = _eventos;
             this.eventosFiltrados = this.eventos;
-            console.log(_eventos);
           },
-          error => { console.log(error)}
-          );
+          error => {
+            this.toastr.error(`Erro ao tentar carregar eventos: ${error}`);
+          });
         }
       }
