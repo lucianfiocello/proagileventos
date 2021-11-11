@@ -9,6 +9,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgModule } from '@angular/core';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
+import { ToastrModule } from 'ngx-toastr';
+
 import { EventoService } from './_services/evento.service';
 
 import { AppComponent } from './app.component';
@@ -34,6 +36,11 @@ import { DateTimeFormatPipe } from './_helps/date-time-format-pipe.pipe';
     HttpClientModule,
     ModalModule.forRoot(),
     ReactiveFormsModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
     TooltipModule.forRoot()
   ],
   providers: [
